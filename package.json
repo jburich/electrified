@@ -1,0 +1,28 @@
+{
+  "name": "electrified",
+  "version": "1.0.0",
+  "description": "Generates Electron apps from any web app ",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "generate": "babel-node src/index.js "
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.4",
+    "devtron": "^1.4.0",
+    "diff-match-patch": "^1.0.4",
+    "electron-debug": "^2.1.0",
+    "image-downloader": "^3.4.2",
+    "nodegit": "^0.24.1",
+    "request": "^2.88.0",
+    "rimraf": "^2.6.3"
+  }
+}

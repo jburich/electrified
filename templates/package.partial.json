@@ -1,0 +1,17 @@
+{
+  "name": "electron-webpack-quick-start",
+  "version": "1.0.0",
+  "build": {
+    "appId": "local.gmail",
+    "productName": "Gmail",
+    "mac": {
+      "category": "local.mail"
+    },
+    "artifactName": "${productName}.${ext}"
+  },
+  "dependencies": {
+    "electron-context-menu": "^0.11.0",
+    "devtron": "^1.4.0",
+    "electron-debug": "^2.1.0"
+  }
+}
