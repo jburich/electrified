@@ -1,8 +1,12 @@
-import { shell } from 'electron'
+import {shell} from 'electron'
 
-function createMainWindow() {
+export const launchInNewWindow = window => {
   window.webContents.on('new-window', (event, url) => {
     event.preventDefault()
     shell.openExternal(url)
   })
+};
+
+function createMainWindow() {
+  launchInNewWindow(window)
 }
