@@ -57,4 +57,5 @@ async function index() {
   await setIcon(outputDirectory, iconPath);
   await build(outputDirectory);
   await open(outputDirectory, programName);
+  // await openApp(outputDirectory, programName);
 }

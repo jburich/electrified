@@ -168,9 +168,11 @@ const setUrl = (base, url) => {
  *
  * @returns {*} The array of the file with updated data
  */
-const setBrowserOptions = base => {
+export const setBrowserOptions = base => {
   const newLineIndex = base.findIndex(line=>line.includes('new BrowserWindow'))
-  base[newLineIndex] = base[newLineIndex].replace(/\(\)/, '({webPreferences:{sandbox:true}})');
+  if ( newLineIndex > -1 ) {
+    base[newLineIndex] = base[newLineIndex].replace(/\(\)/, '({webPreferences:{sandbox:true}})');
+  }
   return base;
 }
 
@@ -181,6 +183,7 @@ export default async function modifyJs(outputDirectory, urlToLoad) {
   let result = read(`${outputDirectory}/src/main/index.js`);
   result = merge(result, 'menu');
   result = merge(result, 'open-in-browser');
+  result = merge(result, 'notifications');
   // result = merge(result, 'debug');
 
   //set the url
