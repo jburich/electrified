@@ -1,7 +1,7 @@
 import {Menu} from 'electron';
 import contextMenu from 'electron-context-menu';
 
-const template = [{
+export const template = [{
   label: "Application",
   submenu: [
     {label: "About Application", selector: "orderFrontStandardAboutPanel:"},
@@ -24,8 +24,11 @@ const template = [{
 }
 ];
 
-const context = contextMenu();
+export const setUpMenu = ()=> {
+  contextMenu()
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+};
 
 function createMainWindow() {
-  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+  setUpMenu();
 }
