@@ -7,7 +7,8 @@
   "scripts": {
     "generate": "babel-node src/index.js ",
     "jest": "jest",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "lint": "eslint src --fix"
   },
   "babel": {
     "presets": [
@@ -29,6 +30,26 @@
   },
   "devDependencies": {
     "electron": "^4.1.0",
-    "jest": "^24.5.0"
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "husky": "^1.3.1",
+    "jest": "^24.5.0",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

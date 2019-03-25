@@ -1,6 +1,6 @@
-import {execSync} from 'child_process';
+import { execSync } from 'child_process';
 
-export default async function (outputDirectory, command) {
+export default async function(outputDirectory, command) {
   return new Promise((resolve, reject) => {
     try {
       execSync(`${command}`, {
@@ -13,5 +13,3 @@ export default async function (outputDirectory, command) {
     }
   });
 }
-
-

@@ -1,5 +1,5 @@
-import yarn from './run-yarn'
+import yarn from './run-yarn';
 
-export default async function (outputDirectory) {
+export default async function(outputDirectory) {
   return yarn(outputDirectory, 'dist');
 }

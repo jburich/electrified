@@ -1,5 +1,5 @@
 import download from 'image-downloader';
-import runExec from './run-exec'
+import runExec from './run-exec';
 
 export default async function modifyJs(outputDirectory, urlToLoad) {
   console.log('Setting Icon');
@@ -10,6 +10,8 @@ export default async function modifyJs(outputDirectory, urlToLoad) {
       dest: `${outputDirectory}/build/icon.png`
     });
   } else {
-    return Promise.resolve(runExec(`${outputDirectory}/build`, `cp ${urlToLoad} icon.png`));
+    return Promise.resolve(
+      runExec(`${outputDirectory}/build`, `cp ${urlToLoad} icon.png`)
+    );
   }
 }

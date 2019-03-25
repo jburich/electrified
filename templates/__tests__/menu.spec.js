@@ -1,7 +1,7 @@
-import {Menu} from 'electron';
+import { Menu } from 'electron';
 import contextMenu from 'electron-context-menu';
 
-import {setUpMenu, template} from '../menu'
+import { setUpMenu, template } from '../menu';
 
 describe('menu', () => {
   it('should set the context menu', () => {

@@ -1,7 +1,11 @@
 import fs from 'fs';
-import {promisify} from 'util';
+import { promisify } from 'util';
 
-const read = filename => fs.readFileSync(filename).toString('utf8').split('\n');
+const read = filename =>
+  fs
+    .readFileSync(filename)
+    .toString('utf8')
+    .split('\n');
 
 const isImport = line => line.includes('import') || line.includes('use strict');
 
@@ -25,12 +29,13 @@ const isInFunction = line => !isReturn(line) && !isFunctionEnd(line);
 
 const isBlank = line => line.trim().length === 0;
 
-const isCompleteLine = line => line.trim().charAt(line.trim().length - 1) === ';';
+const isCompleteLine = line =>
+  line.trim().charAt(line.trim().length - 1) === ';';
 
 const isNotLineEnd = line => line.trim().charAt(line.trim().length - 1) !== ';';
 
-const isInCompleteLine = line => isConst(line) && line.trim().charAt(line.trim().length - 1) === '{';
-
+const isInCompleteLine = line =>
+  isConst(line) && line.trim().charAt(line.trim().length - 1) === '{';
 
 /**
  * Merges a Patch File (note its not an actual patch file, but simply a file that can be merged in based on
@@ -57,7 +62,7 @@ const merge = (base, patch) => {
       if (isInCompleteLine(nextBaseLine)) {
         // console.log(`incomplete: ${nextBaseLine}`)
         nextBaseLine = base.shift();
-        result.push("//******** start recursion **********");
+        result.push('//******** start recursion **********');
         pushBase(isNotLineEnd);
         result.push(`//******** end recursion ${nextBaseLine} **********`);
         result.push(nextBaseLine);
@@ -66,7 +71,9 @@ const merge = (base, patch) => {
         nextBaseLine = base.shift();
       }
     }
-    console.log(`escape test was for ${nextBaseLine} and was ${until(nextBaseLine)}`);
+    console.log(
+      `escape test was for ${nextBaseLine} and was ${until(nextBaseLine)}`
+    );
   };
 
   /**
@@ -99,7 +106,7 @@ const merge = (base, patch) => {
       pushPatch(line);
 
       //add app event listeners next
-    }  else if (isListener(line)) {
+    } else if (isListener(line)) {
       //console.log('match const');
       pushBase(isListener);
       pushPatch(line);
@@ -124,7 +131,7 @@ const merge = (base, patch) => {
 
       //if we hit some other condition simply fail
     } else {
-      throw(`Line ${i}: "${line}" from the patch file didn't match anything`);
+      throw `Line ${i}: "${line}" from the patch file didn't match anything`;
     }
   });
 
@@ -134,7 +141,6 @@ const merge = (base, patch) => {
   //concat any remaining base lines into the result and return it
   return result.concat(base);
 };
-
 
 /**
  * Find the if/else in the base file where all of the window load functionality happens and replace it with just
@@ -169,12 +175,17 @@ const setUrl = (base, url) => {
  * @returns {*} The array of the file with updated data
  */
 export const setBrowserOptions = base => {
-  const newLineIndex = base.findIndex(line=>line.includes('new BrowserWindow'))
-  if ( newLineIndex > -1 ) {
-    base[newLineIndex] = base[newLineIndex].replace(/\(\)/, '({webPreferences:{sandbox:true}})');
+  const newLineIndex = base.findIndex(line =>
+    line.includes('new BrowserWindow')
+  );
+  if (newLineIndex > -1) {
+    base[newLineIndex] = base[newLineIndex].replace(
+      /\(\)/,
+      '({webPreferences:{sandbox:true}})'
+    );
   }
   return base;
-}
+};
 
 export default async function modifyJs(outputDirectory, urlToLoad) {
   console.log('Generating index.js');
@@ -194,5 +205,9 @@ export default async function modifyJs(outputDirectory, urlToLoad) {
   result = setBrowserOptions(result);
 
   //write the results back to index.js
-  return promisify(fs.writeFile)(`${outputDirectory}/src/main/index.js`, result.join('\n'), 'utf8');
+  return promisify(fs.writeFile)(
+    `${outputDirectory}/src/main/index.js`,
+    result.join('\n'),
+    'utf8'
+  );
 }

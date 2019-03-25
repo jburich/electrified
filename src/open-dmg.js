@@ -1,5 +1,5 @@
-import runExec from './run-exec'
+import runExec from './run-exec';
 
-export default async function (outputDirectory, packageName) {
+export default async function(outputDirectory, packageName) {
   return runExec(outputDirectory, `open dist/${packageName}.dmg`);
 }

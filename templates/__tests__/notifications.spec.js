@@ -1,4 +1,4 @@
-import {onTitleChange} from "../notifications";
+import { onTitleChange } from '../notifications';
 
 describe('notifications', () => {
   it('should set the badge number on unread', () => {
@@ -9,7 +9,7 @@ describe('notifications', () => {
       }
     };
     global.app = mockApp;
-    onTitleChange("Inbox (42) - jburich@gmail.com - Gmail");
+    onTitleChange('Inbox (42) - jburich@gmail.com - Gmail');
 
     expect(mockSetBadge.mock.calls.length).toEqual(1);
     expect(mockSetBadge.mock.calls[0][0]).toEqual('42');
@@ -23,7 +23,7 @@ describe('notifications', () => {
       }
     };
     global.app = mockApp;
-    onTitleChange("Inbox - jburich@gmail.com - Gmail");
+    onTitleChange('Inbox - jburich@gmail.com - Gmail');
 
     expect(mockSetBadge.mock.calls.length).toEqual(1);
     expect(mockSetBadge.mock.calls[0][0]).toEqual('');
