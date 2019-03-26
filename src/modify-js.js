@@ -57,23 +57,16 @@ const merge = (base, patch) => {
    */
   const pushBase = until => {
     while (until(nextBaseLine) || isBlank(nextBaseLine)) {
-      // console.log(nextBaseLine)
       result.push(nextBaseLine);
       if (isInCompleteLine(nextBaseLine)) {
-        // console.log(`incomplete: ${nextBaseLine}`)
         nextBaseLine = base.shift();
-        result.push('//******** start recursion **********');
         pushBase(isNotLineEnd);
-        result.push(`//******** end recursion ${nextBaseLine} **********`);
         result.push(nextBaseLine);
         nextBaseLine = base.shift();
       } else {
         nextBaseLine = base.shift();
       }
     }
-    console.log(
-      `escape test was for ${nextBaseLine} and was ${until(nextBaseLine)}`
-    );
   };
 
   /**
