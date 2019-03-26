@@ -1,10 +1,10 @@
 jest.mock('../run-yarn');
-import build from '../build';
+import test from '../dependencies';
 import yarn from '../run-yarn';
 
 describe('build', () => {
   it('should run the build step from yar', () => {
-    build('testdir');
-    expect(yarn).toHaveBeenCalledWith('testdir', 'dist');
+    test('testdir');
+    expect(yarn).toHaveBeenCalledWith('testdir');
   });
 });
