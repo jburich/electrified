@@ -27,7 +27,9 @@ export default async function createPackage(packageName, outputDirectory) {
       ...jsonContent.dependencies
     }
   };
-  // console.log("Final Output  : \n" + JSON.stringify(output.dependencies, null, 2));
+  // constole.log(
+  //   'Final Output  : \n' + JSON.stringify(output.dependencies, null, 2)
+  // );
 
   return new Promise((resolve, reject) =>
     fs.writeFile(
