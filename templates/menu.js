@@ -1,5 +1,5 @@
-import { Menu } from 'electron';
-import contextMenu from 'electron-context-menu';
+import { Menu } from 'electron'
+import contextMenu from 'electron-context-menu'
 
 export const template = [
   {
@@ -30,13 +30,13 @@ export const template = [
       }
     ]
   }
-];
+]
 
 export const setUpMenu = () => {
-  contextMenu();
-  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
-};
+  contextMenu()
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+}
 
 function createMainWindow() {
-  setUpMenu();
+  setUpMenu()
 }

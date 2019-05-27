@@ -61,6 +61,9 @@
     ]
   },
   "jest": {
-    "clearMocks": true
+    "clearMocks": true,
+    "setupFilesAfterEnv": [
+      "<rootDir>/__mocks__/globals.js"
+    ]
   }
 }
